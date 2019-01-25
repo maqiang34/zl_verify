@@ -1,4 +1,4 @@
-package com.smartcold.manage.cold.controller;
+package com.smartcold.manage.cold.controller.report;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
