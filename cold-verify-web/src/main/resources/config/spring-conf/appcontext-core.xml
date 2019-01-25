@@ -37,9 +37,10 @@
     </bean> 
    
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" name="storesetdbSqlSessionFactory">  
-       <property name="dataSource" ref="dataSource" />  
-       <property name="mapperLocations" value="classpath*:config/sqlmap/*.xml"/>  
-       <property name="typeAliasesPackage" value="com.smartcold.manage.cold.entity" />
+       <property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations" value="classpath*:config/sqlmap/**/*.xml"/>
+		<property name="typeAliasesPackage" value="com.smartcold.manage.cold.entity" />
+		<property name="configLocation" value="classpath:mybatis-config.xml"/>
     </bean>
 	
 
@@ -55,6 +56,6 @@
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="150000000" />
 	</bean>
-	<context:component-scan base-package="com.smartcold.manage.cold.service" />
+	<context:component-scan base-package="com.smartcold.manage.cold" />
 
 </beans>

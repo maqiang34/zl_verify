@@ -7,20 +7,25 @@
   <meta charset="utf-8" name="keywords" content="冷库360,冷库监控,冷库智能管理,冷库能效评估，冷库认证与能耗管理" />
   <meta charset="utf-8" name="description" content="冷库360-冷库能效在线管理系统" />
   <title>链库</title>
-  <script type="text/javascript">if(!window.sessionStorage.sikey){ document.location.href = "login.html";} </script>
+  <script type="text/javascript">
+      if(!window.sessionStorage.sikey){
+          console.log("检测是否需要登录");
+          document.location.href = "login.html";
+      }
+  </script>
   <link rel="shortcut icon" href="dist/img/favicon.ico" />
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
-   <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
-   <link rel="stylesheet" href="bower_components/select2/select2.min.css">
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="bower_components/select2/select2.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="bower_components/adminlte/AdminLTE.min.css">
   <link rel="stylesheet" href="bower_components/adminlte/skin-blue.css">
-   <link rel="stylesheet" href="dist/style/common.css">
-   <link rel="stylesheet" href="dist/style/index.css">
+  <link rel="stylesheet" href="dist/style/common.css">
+  <link rel="stylesheet" href="dist/style/index.css">
 
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -66,7 +71,7 @@
                     </a>
                   </li>
                   <!-- end message -->
-              
+
                 </ul>
               </li>
               <li class="footer"><a href="#">See All Messages</a></li>
@@ -104,7 +109,7 @@
               <li>
                 <!-- inner menu: contains the actual data -->
                 <ul class="menu">
-                  
+
                   <li><!-- Task item -->
                     <a href="#">
                       <h3>
@@ -193,6 +198,8 @@
         <li class="treeview"><a href="#/reportUpdate"><i class="fa fa-pie-chart"></i> <span>模板报告</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a></li>
         <li class="treeview"><a href="#/fullData"><i class="fa fa-pie-chart"></i> <span>数据测试1</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a></li>
         <li class="treeview"><a href="#/fullData1"><i class="fa fa-pie-chart"></i> <span>数据测试2</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a></li>
+        <li class="treeview"><a href="#/setParameter"><i class="fa fa-pie-chart"></i> <span>参数配置</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a></li>
+
       </ul>
     </section>
     <!-- /.sidebar -->

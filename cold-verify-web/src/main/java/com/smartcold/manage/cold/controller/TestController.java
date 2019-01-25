@@ -14,11 +14,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class TestController {
 
-        @RequestMapping(value = "test.htm", method = RequestMethod.GET)
-        public String index(String name, Model model) {
-            model.addAttribute("message", "hello");
-            model.addAttribute("name", name);
-            return "/test";
-        }
+    @RequestMapping(value = "test.htm", method = RequestMethod.GET)
+    public String index(String name, Model model) {
+        model.addAttribute("message", "hello");
+        model.addAttribute("name", name);
+        return "/test";
+    }
 
+    public static void main(String[] args) {
+        System.out.println("测试");
+    }
 }
