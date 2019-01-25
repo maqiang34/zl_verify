@@ -1,11 +1,13 @@
-package com.smartcold.manage.cold.controller;
+package com.smartcold.manage.cold.controller.dev;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
+import com.smartcold.manage.cold.controller.BaseController;
 import com.smartcold.manage.cold.util.R;
 import org.influxdb.InfluxDB;
 import org.influxdb.dto.BatchPoints;
 import org.influxdb.dto.Point;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -59,15 +61,21 @@ public class DEVDataController extends BaseController {
 	/**
 	 * 执行设备数据保存
 	 */
-    //@Scheduled(fixedRate = 60000)
+    @Scheduled(fixedRate = 60000)
 	public  void saveData(){
-    	if(!concurrentLinkedQueue.isEmpty()){
-			BatchPoints batchPoints = BatchPoints.database("verify").consistency(InfluxDB.ConsistencyLevel.ALL).build();
-    		while (concurrentLinkedQueue.isEmpty()){
-				Point point = Point.measurement("DevData").time(System.currentTimeMillis() / 1000, TimeUnit.SECONDS).tag("oid", "1").tag("key", "0").addField("value", "3.3").build();
-				batchPoints.point(point);
-			}
-           this.influxDB.write(batchPoints);
+//    	if(!concurrentLinkedQueue.isEmpty()){
+//			BatchPoints batchPoints = BatchPoints.database("verify").consistency(InfluxDB.ConsistencyLevel.ALL).build();
+//    		while (concurrentLinkedQueue.isEmpty()){
+//				Point point = Point.measurement("DevData").time(System.currentTimeMillis() / 1000, TimeUnit.SECONDS).tag("oid", "1").tag("key", "0").addField("value", "3.3").build();
+//				batchPoints.point(point);
+//			}
+//           this.influxDB.write(batchPoints);
+//		}
+		BatchPoints batchPoints = BatchPoints.database("verify").consistency(InfluxDB.ConsistencyLevel.ALL).build();
+		for (int i = 0; i <1000 ; i++) {
+			Point point = Point.measurement("DevData").time(System.currentTimeMillis() / 1000, TimeUnit.SECONDS).tag("oid", "1").tag("key", "0").addField("value", "3.3").build();
+			batchPoints.point(point);
 		}
+           this.influxDB.write(batchPoints);
 	}
 }
