@@ -1,0 +1,95 @@
+html { font-family:"微软雅黑" ,"Microsoft YaHei", “Helvetica Neue”, Helvetica, STHeiTi, Arial, sans-serif !important; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; }
+body { font-family:"微软雅黑" ,"Microsoft YaHei" !important;margin: 0; font-size:0.6rem;  color: #333;  height: 100%; overflow-x: hidden; -webkit-overflow-scrolling: touch;}
+article, aside, details, figcaption, figure, footer, header, main, nav, section, summary { display: block; }
+a { background: transparent; text-decoration: none; color: #333; }
+a:active,a:focus { outline: 0; }
+b, strong { font-weight: bold; }
+dfn { font-style:normal;}
+img { border: 0; vertical-align: middle; max-width: 100%;}
+* {-webkit-tap-highlight-color: rgba(0,0,0,0);-webkit-tap-highlight-color: transparent; /* For some Androids */outline: none;}
+input,textarea,button { border: 0; margin: 0; padding: 0; font-family:"Microsoft YaHei", “Helvetica Neue”, Helvetica, STHeiTi, Arial, sans-serif;}
+textarea { resize: none;}
+table { border-collapse: collapse; border-spacing: 0; }
+td, th { padding: 0; }
+h1, h2, h3, h4, h5, h6, p, figure, form, blockquote { margin: 0; font-family:"微软雅黑" ,"Microsoft YaHei" !important }
+ul, ol, li, dl, dd { margin: 0; padding: 0; }
+ul, ol { list-style: none; }
+i,em{font-style: normal;font-weight: normal;}
+input::-moz-placeholder, textarea::-moz-placeholder { color: #ccc; }
+input:-ms-input-placeholder, textarea:-ms-input-placeholder { color: #ccc; }
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { color: #ccc; }
+.clearfix:after{ content:"."; display:block; height:0; clear:both; visibility:hidden; font-size:0; line-height:0; overflow: hidden;}
+.clearfix{ display:inline-block;}
+*html .clearfix{ height:1%;}
+.clearfix{ display:block;}
+
+.fl{ float: left;}
+.fr{ float: right;}
+label{font-weight: normal;}
+input[type='number'] {
+    -moz-appearance:textfield;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+
+
+@font-face {font-family: 'iconfont';
+    src: url('../fonts_new_1/iconfont.eot'); /* IE9*/
+    src: url('../fonts_new_1/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../fonts_new_1/iconfont.woff') format('woff'), /* chrome、firefox */
+    url('../fonts_new_1/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('../fonts_new_1/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont{
+    font-family:"iconfont" !important;
+    font-size:32px;font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+
+}
+.iconfont_new:before:hover{
+    color:#fff;
+}
+.icon-product-service:before { content: "\e7db"; }
+.icon-invite:before { content: "\e7dd"; }
+.icon-suggest:before { content: "\e7de"; }
+.icon-news:before { content: "\e7ab"; }
+.icon-info:before { content: "\e7df"; }
+.icon-password:before { content: "\e7dc"; }
+.icon-back:before { content: "\e7af"; }
+.icon-help:before{content: "\e77c"; }
+.icon-front:before{content: "\e7b0"; }
+.icon-home:before{content:"\e6c8"}
+
+@font-face {font-family: 'iconfont';
+    src: url('../fonts/iconfont.eot'); /* IE9*/
+    src: url('../fonts/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../fonts/iconfont.woff') format('woff'), /* chrome、firefox */
+    url('../fonts/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('../fonts/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont{
+    font-family:"iconfont" !important;
+    font-size:24px;font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+
+}
+.iconfont:before:hover{
+    color:#fff;
+}
+.icon-user:before { content: "\e609"; }
+.icon-zhuye:before { content: "\e60b"; }
+.icon-dialog:before { content: "\e608"; }
+.icon-wenti:before { content: "\e60a"; }
+.icon-user:before:hover{
+}

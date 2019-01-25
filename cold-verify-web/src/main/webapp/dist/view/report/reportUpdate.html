@@ -1,0 +1,55 @@
+<!-- 文件上传-->
+<div style="margin-bottom: 5px">
+    <div class="input-group" style="margin-top: 10px;font-size:16px">
+        <span class="input-group-addon" style="border-top-left-radius: 5px;border-bottom-left-radius: 5px;">test2:</span>
+        <input type="text" class="form-control" style="border-top-right-radius: 5px;border-bottom-right-radius: 5px; width: 15%" ng-model="test2" id="test2" placeholder="请输入配置内容">
+    </div>
+
+    <div class="input-group" style="margin-top: 10px;font-size:16px">
+        <span class="input-group-addon" style="border-top-left-radius: 5px;border-bottom-left-radius: 5px;">test3:</span>
+        <input type="text" class="form-control" style="border-top-right-radius: 5px;border-bottom-right-radius: 5px; width: 15%" ng-model="test3" id="test3"  placeholder="请输入配置内容">
+    </div>
+
+    <div class="input-group" style="margin-top: 10px;font-size:16px;width: 20px;">
+        <span class="input-group-addon" style="border-top-left-radius: 5px;border-bottom-left-radius: 5px;">test4:</span><input type="file"  accept="image/*" style="display: inline" ng-model="test4" id="test4" value='+key+'>
+    </div>
+
+    <div class="input-group" style="margin-top: 10px;font-size:16px">
+        <span class="input-group-addon" style="border-top-left-radius: 5px;border-bottom-left-radius: 5px;">test5:</span>
+        <input type="text" class="form-control" style="border-top-right-radius: 5px;border-bottom-right-radius: 5px; width: 15%" ng-model="test5" id="test5"  placeholder="请输入配置内容">
+    </div>
+
+    <div class="input-group" style="margin-top: 10px;font-size:16px">
+        <span class="input-group-addon" style="border-top-left-radius: 5px;border-bottom-left-radius: 5px;">test6:</span>
+        <input type="text" class="form-control" style="border-top-right-radius: 5px;border-bottom-right-radius: 5px; width: 15%" ng-model="test6" id="test6"  placeholder="请输入配置内容">
+    </div>
+
+    <div class="input-group" style="margin-top: 10px;margin-bottom:10px;font-size:16px">
+        <span class="input-group-addon" style="border-top-left-radius: 5px;border-bottom-left-radius: 5px;">test7:</span>
+        <input type="file" accept="image/*" style="display: inline" ng-model="test7" id="test7" ng-model="test7" value='+key+'>
+    </div>
+</div>
+<select ng-model="selectType" style="height: 30px">
+    <option value="">==请选择参数类型==</option>
+    <option>文本框</option>
+    <option>图片</option>
+</select>
+<button type="button" class="btn btn-success" ng-click="addConf()"><span class="glyphicon glyphicon-refresh"></span>添加参数</button>
+<div id="newConf">
+
+</div>
+<br>
+<div>
+    <form class="form-inline" role="form">
+        <div class="form-group">
+            <label class="sr-only" for="inputfile">文件输入</label>
+            <input type="file" id="inputfile">
+        </div>
+        <button type="button" class="btn btn-default" ng-click="update()"><span class="glyphicon glyphicon-open"></span> 上传</button>
+        <button type="button" class="btn btn-warning" ng-click="preview()"><span class="glyphicon glyphicon-import"></span>预览</button>
+        <button type="button" class="btn btn-warning" ng-click="download()"><span class="glyphicon glyphicon-import"></span>下载</button>
+    </form>
+</div>
+
+
+

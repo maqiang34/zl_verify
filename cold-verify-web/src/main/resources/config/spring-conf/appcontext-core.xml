@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:cache="http://www.springframework.org/schema/cache"
+       xsi:schemaLocation="
+	   http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-4.2.xsd
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+     ">
+     <!--配置数据源属性文件引入Server.properties -->
+    <context:property-placeholder location="classpath:config/properties/server.properties"	ignore-unresolvable="true" />
+    
+ <!--  数据源1：  ============================================================================我是分隔线========================================================================================================================= -->
+ <!-- 配置数据源加载1 -->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"   init-method="init" destroy-method="close">
+       <property name="driverClassName" value="${jdbc.driver}" />
+		<property name="url" value="${jdbc.url_smartcold}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<property name="initialSize" value="${jdbc.initialSize}" />
+		<property name="minIdle" value="${jdbc.minIdle}" />
+		<property name="maxActive" value="${jdbc.maxActive}" />
+		<property name="maxWait" value="${jdbc.maxWait}" />
+		<property name="timeBetweenEvictionRunsMillis" value="60000" />
+		<property name="minEvictableIdleTimeMillis" value="300000" />
+		<property name="validationQuery" value="SELECT 'x'" />
+		<property name="testWhileIdle" value="true" />
+		<property name="testOnBorrow" value="false" />
+		<property name="testOnReturn" value="false" />
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxPoolPreparedStatementPerConnectionSize" value="20" />
+		<property name="filters" value="stat" />
+    </bean>
+	 <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">  
+       <property name="basePackage" value="com.smartcold.manage.cold.dao" />
+       <property name="sqlSessionFactoryBeanName" value="storesetdbSqlSessionFactory"/>
+    </bean> 
+   
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" name="storesetdbSqlSessionFactory">  
+       <property name="dataSource" ref="dataSource" />  
+       <property name="mapperLocations" value="classpath*:config/sqlmap/*.xml"/>  
+       <property name="typeAliasesPackage" value="com.smartcold.manage.cold.entity" />
+    </bean>
+	
+
+
+	<!--  2.influxdb数据源配置   ============================================================================我是分隔线========================================================================================================================= -->
+	<!--<bean id="InfluxdbConf" class="com.smartcold.manage.cold.entity.InfluxdbConf" name="InfluxdbInfo">-->
+		<!--<property name="url" value="${influxdb.url}" />-->
+		<!--<property name="username" value="${influxdb.username}" />-->
+		<!--<property name="password" value="${influxdb.password}" />-->
+		<!--<property name="database" value="${influxdb.database}" />-->
+	<!--</bean>-->
+
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="150000000" />
+	</bean>
+	<context:component-scan base-package="com.smartcold.manage.cold.service" />
+
+</beans>

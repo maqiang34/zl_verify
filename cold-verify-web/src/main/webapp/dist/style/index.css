@@ -1,0 +1,59 @@
+/**
+ \* Created with IntelliJ IDEA.
+ \* Author: Jinghy
+ \* Date: 2017/9/29/029
+ \* Time: 14:11
+ \*/
+.logoBox{
+    height: 100%;
+}
+.logoBox img{
+    height:50%;
+}
+.mode>div{
+    height: 400px;
+    line-height: 400px;
+    cursor: pointer;
+    background-color: rgba(0,0,0,0.3);
+}
+.mode>div>div{
+    display: inline-block;
+    vertical-align: middle;
+    height: 80px;
+    line-height: 30px;
+    color: #fff;
+}
+.mode>div i{
+    font-size: 40px;
+}
+.addBox{
+}
+.addBox>div{
+    min-height: calc(100vh - 90px);
+    float: left;
+}
+.box-l{
+    width: 70%;
+}
+.box-r{
+    background-color: rgba(0,0,0,0.3);
+    width: 30%;
+}
+.auto{
+    width: 200px;
+    height: 100px;
+    cursor: move;
+    position: absolute;
+    top: 500px;
+    left: 300px;
+    background-color: #E84252;
+    color: #FFFFFF;
+    -webkit-box-shadow: 0 0 5px #999;
+    -moz-box-shadow: 0 0 5px #999;
+    box-shadow: 0 0 5px #999;
+    line-height: 2;
+    text-align: center;
+}
+.resize-panel{
+     background-color: rgba(0, 0, 0, 0.2) !important;
+}

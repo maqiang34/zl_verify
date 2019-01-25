@@ -1,0 +1,16 @@
+<div class="row">
+    <div class="col-lg-3 col-md-3 col-xs-6 col-sm-6">
+        <div class="form-group">
+            <select class="form-control select2" data-placeholder="选择项目" style="width: 100%;"
+                    ng-options="mode.name for mode in modelist" ng-change="changemode()"
+                    ng-model="selectedMode"></select>
+        </div>
+    </div>
+    <div class="col-lg-2 col-md-2 col-xs-6 col-sm-6">
+        <button class="btn btn-block btn-info" ng-click="createMode()">创建模块</button>
+    </div>
+</div>
+<div id="dash_main_div"  >
+
+</div>
+
