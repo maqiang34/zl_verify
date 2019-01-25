@@ -24,37 +24,31 @@ import java.util.concurrent.TimeUnit;
  */
 @Configuration
 public class InfluxDBConfig implements Serializable {
-    @Value("${influxdb.username}")
-    private String username;
-    @Value("${influxdb.password}")
-    private String password;
-    @Value("${influxdb.database}")
-    public String database;
-    public static String DATABASE;
-    @Value("${influxdb.blocksize}")
-    public Integer blocksize;
-    @Value("${influxdb.url}")
-    private String url ;
-    @Value("${influxdb.connect-timeout}")
-    private Long connecttimeout ;
-    @Value("${influxdb.read-timeout}")
-    private Long readtimeout ;
-    @Value("${influxdb.write-timeout}")
-    private Long writetimeout ;
-
+    public static Integer BLOCKSIZE;
+    public static String URL, USERNAME, PASSWORD, DATABASE;
+    private  static Long CONNECTTIMEOUT, READTIMEOUT, WRITETIMEOUT;
+    private static Builder builder =null;
     protected final Logger logger = LoggerFactory.getLogger(InfluxDBConfig.class);
 
-    @Bean
-   public Builder getBuilder(){
-      return new Builder().connectTimeout(this.connecttimeout, TimeUnit.SECONDS).readTimeout(this.readtimeout, TimeUnit.SECONDS).writeTimeout(this.readtimeout,TimeUnit.SECONDS);
-   }
 
-    @Bean
-    public InfluxDB getConnection() {
-            DATABASE=this.database;
-            InfluxDB influxDB = InfluxDBFactory.connect(this.url, this.username, this.password,this.getBuilder()).setDatabase(this.database).enableBatch().enableGzip();
-            logger.info("influxdeb  启用批量插入:{},启用压缩：{}",influxDB.isBatchEnabled(),influxDB.isGzipEnabled());
-            return influxDB;
+    public InfluxDBConfig(@Value("${influxdb.username}") String username, @Value("${influxdb.password}") String password,
+                          @Value("${influxdb.database}") String database, @Value("${influxdb.blocksize}") Integer blocksize,
+                          @Value("${influxdb.url}") String url, @Value("${influxdb.connect-timeout}")  Long connecttimeout,
+                          @Value("${influxdb.read-timeout}")Long readtimeout, @Value("${influxdb.write-timeout}")Long writetimeout ) {
+        InfluxDBConfig.USERNAME = username;
+        InfluxDBConfig.PASSWORD = password;
+        InfluxDBConfig.DATABASE = database;
+        InfluxDBConfig.BLOCKSIZE = blocksize;
+        InfluxDBConfig.URL = url;
+        InfluxDBConfig.CONNECTTIMEOUT = connecttimeout;
+        InfluxDBConfig.READTIMEOUT = readtimeout;
+        InfluxDBConfig.WRITETIMEOUT = writetimeout;
+        InfluxDBConfig.builder = new Builder().connectTimeout(InfluxDBConfig.CONNECTTIMEOUT, TimeUnit.SECONDS).readTimeout(READTIMEOUT, TimeUnit.SECONDS).writeTimeout(InfluxDBConfig.READTIMEOUT, TimeUnit.SECONDS);
     }
+
+    public static InfluxDB getInfluxDB() {
+        return InfluxDBFactory.connect(InfluxDBConfig.URL, InfluxDBConfig.USERNAME, InfluxDBConfig.PASSWORD, InfluxDBConfig.builder).setDatabase(InfluxDBConfig.DATABASE).enableBatch().enableGzip();
+    }
+
 
 }

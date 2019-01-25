@@ -25,8 +25,6 @@ import java.util.concurrent.TimeUnit;
 @Controller
 public class DEVDataController extends BaseController {
 
-	@Resource
-	private InfluxDB influxDB;
 
 
 
@@ -65,18 +63,19 @@ public class DEVDataController extends BaseController {
     @Scheduled(fixedRate = 60000)
 	public  void saveData(){
 //    	if(!concurrentLinkedQueue.isEmpty()){
-//			BatchPoints batchPoints = BatchPoints.database("verify").consistency(InfluxDB.ConsistencyLevel.ALL).build();
-//    		while (concurrentLinkedQueue.isEmpty()){
-//				Point point = Point.measurement("DevData").time(System.currentTimeMillis() / 1000, TimeUnit.SECONDS).tag("oid", "1").tag("key", "0").addField("value", "3.3").build();
-//				batchPoints.point(point);
-//			}
-//           this.influxDB.write(batchPoints);
-//		}
+////			BatchPoints batchPoints = BatchPoints.database("verify").consistency(InfluxDB.ConsistencyLevel.ALL).build();
+////    		while (concurrentLinkedQueue.isEmpty()){
+////				Point point = Point.measurement("DevData").time(System.currentTimeMillis() / 1000, TimeUnit.SECONDS).tag("oid", "1").tag("key", "0").addField("value", "3.3").build();
+////				batchPoints.point(point);
+////			}
+////           this.influxDB.write(batchPoints);
+////		}
+		InfluxDB influxDB=InfluxDBConfig.getInfluxDB();
 		BatchPoints batchPoints = BatchPoints.database(InfluxDBConfig.DATABASE).consistency(InfluxDB.ConsistencyLevel.ALL).build();
 		for (int i = 0; i <1000 ; i++) {
 			Point point = Point.measurement("DevData").time(System.currentTimeMillis() / 1000, TimeUnit.SECONDS).tag("oid", Integer.toString(i)).tag("key", "0").addField("value", "3.3").build();
 			batchPoints.point(point);
 		}
-           this.influxDB.write(batchPoints);
+		influxDB.write(batchPoints);
 	}
 }
