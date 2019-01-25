@@ -2,6 +2,7 @@ package com.smartcold.manage.cold.controller.dev;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
+import com.smartcold.manage.cold.config.InfluxDBConfig;
 import com.smartcold.manage.cold.controller.BaseController;
 import com.smartcold.manage.cold.util.R;
 import org.influxdb.InfluxDB;
@@ -71,7 +72,7 @@ public class DEVDataController extends BaseController {
 //			}
 //           this.influxDB.write(batchPoints);
 //		}
-		BatchPoints batchPoints = BatchPoints.database("verify").consistency(InfluxDB.ConsistencyLevel.ALL).build();
+		BatchPoints batchPoints = BatchPoints.database(InfluxDBConfig.DATABASE).consistency(InfluxDB.ConsistencyLevel.ALL).build();
 		for (int i = 0; i <1000 ; i++) {
 			Point point = Point.measurement("DevData").time(System.currentTimeMillis() / 1000, TimeUnit.SECONDS).tag("oid", Integer.toString(i)).tag("key", "0").addField("value", "3.3").build();
 			batchPoints.point(point);

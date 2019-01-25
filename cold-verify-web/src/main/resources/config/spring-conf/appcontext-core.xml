@@ -12,24 +12,18 @@
     
  <!--  数据源1：  ============================================================================我是分隔线========================================================================================================================= -->
  <!-- 配置数据源加载1 -->
-    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"   init-method="init" destroy-method="close">
+    <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"   destroy-method="close">
        <property name="driverClassName" value="${jdbc.driver}" />
-		<property name="url" value="${jdbc.url_smartcold}" />
+		<property name="jdbcUrl" value="${jdbc.url_smartcold}" />
 		<property name="username" value="${jdbc.username}" />
 		<property name="password" value="${jdbc.password}" />
-		<property name="initialSize" value="${jdbc.initialSize}" />
-		<property name="minIdle" value="${jdbc.minIdle}" />
-		<property name="maxActive" value="${jdbc.maxActive}" />
-		<property name="maxWait" value="${jdbc.maxWait}" />
-		<property name="timeBetweenEvictionRunsMillis" value="60000" />
-		<property name="minEvictableIdleTimeMillis" value="300000" />
-		<property name="validationQuery" value="SELECT 'x'" />
-		<property name="testWhileIdle" value="true" />
-		<property name="testOnBorrow" value="false" />
-		<property name="testOnReturn" value="false" />
-		<property name="poolPreparedStatements" value="true" />
-		<property name="maxPoolPreparedStatementPerConnectionSize" value="20" />
-		<property name="filters" value="stat" />
+		<!-- 连接只读数据库时配置为true， 保证安全 -->
+		<property name="readOnly" value="false" />
+		<property name="connectionTimeout" value="30000" />
+		<property name="idleTimeout" value="600000" />
+		<property name="maxLifetime" value="1800000" />
+		<property name="maximumPoolSize" value="200" />
+		<property name="minimumIdle" value="10" />
     </bean>
 	 <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">  
        <property name="basePackage" value="com.smartcold.manage.cold.dao" />
