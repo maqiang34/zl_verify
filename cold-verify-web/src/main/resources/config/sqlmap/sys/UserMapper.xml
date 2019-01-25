@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.smartcold.manage.cold.dao.sys.UserDao">
+
+	<select id="get" resultType="com.smartcold.manage.cold.entity.sys.UserDO">
+		select `username`,`password`,`dept_id`,`status`,`user_id_create`,`gmt_create`,
+		`gmt_modified`,`user_type`,`register_type` from sys_user where user_id = #{value}
+	</select>
+
+	<select id="list" resultType="com.smartcold.manage.cold.entity.sys.UserDO">
+		select `username`,`password`,`dept_id`,`status`,`user_id_create`,`gmt_create`,
+		`gmt_modified`,`user_type`,`register_type` from sys_user
+        <where>  
+		  		  <if test="username != null and username != ''"> and username = #{username} </if>
+		  		  <if test="password != null and password != ''"> and password = #{password} </if>
+		  		  <if test="deptId != null and deptId != ''"> and dept_id = #{deptId} </if>
+		  		  <if test="status != null and status != ''"> and status = #{status} </if>
+		  		  <if test="userIdCreate != null and userIdCreate != ''"> and user_id_create = #{userIdCreate} </if>
+		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
+		  		  <if test="gmtModified != null and gmtModified != ''"> and gmt_modified = #{gmtModified} </if>
+				  <if test="userType != null and userType != ''"> and user_type = #{userType} </if>
+				  <if test="registerType != null and registerType != ''"> and register_type = #{registerType} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by user_id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+
+
+
+	<select id="getUserByNameAndPwd" resultType="com.smartcold.manage.cold.entity.sys.UserDO">
+		select `username`,`password`,`dept_id`,`status`,`user_id_create`,`gmt_create`,
+		`gmt_modified`,`user_type`,`register_type` from sys_user
+		<where>
+			<if test="username != null and username !=''"> and username = #{username}</if>
+			<if test="password != null and password != ''"> and password = #{password} </if>
+			<if test="deptId != null and deptId != ''"> and dept_id = #{deptId} </if>
+			<if test="status != null and status != ''"> and status = #{status} </if>
+			<if test="userIdCreate != null and userIdCreate != ''"> and user_id_create = #{userIdCreate} </if>
+			<if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
+			<if test="gmtModified != null and gmtModified != ''"> and gmt_modified = #{gmtModified} </if>
+			<if test="userType != null and userType != ''"> and user_type = #{userType} </if>
+			<if test="registerType != null and registerType != ''"> and register_type = #{registerType} </if>
+		</where>
+	</select>
+
+
+
+	<!--查询该部门下的所有用户-->
+	<select id="selectlistByDeptId" resultType="com.smartcold.manage.cold.entity.sys.UserDO">
+		SELECT
+		  s.*
+		FROM
+			sys_user s
+		INNER JOIN (
+			SELECT
+				dept_id
+			FROM
+				(
+					SELECT
+						t1.dept_id,
+
+					IF (
+						find_in_set(parent_id, @pids) > 0,
+						@pids := concat(@pids, ',', dept_id),
+						0
+					) AS ischild
+					FROM
+						(
+							SELECT
+								dept_id,
+								parent_id
+							FROM
+								sys_dept t
+							WHERE
+								t.del_flag = 0
+							ORDER BY
+								dept_id,
+								parent_id,
+								order_num
+						) t1,
+                    (SELECT @pids := #{deptId}) t2
+				) t3
+			WHERE
+					ischild = #{deptId}
+		) AS dlist ON dlist.dept_id = s.dept_id
+
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	<select id="countListByDeptId" resultType="int">
+		SELECT
+			count(*)
+		FROM
+			sys_user s
+		INNER JOIN (
+			SELECT
+				dept_id
+			FROM
+				(
+					SELECT
+						t1.dept_id,
+
+					IF (
+						find_in_set(parent_id, @pids) > 0,
+						@pids := concat(@pids, ',', dept_id),
+						0
+					) AS ischild
+					FROM
+						(
+							SELECT
+								dept_id,
+								parent_id
+							FROM
+								sys_dept t
+							WHERE
+								t.del_flag = 0
+							ORDER BY
+								dept_id,
+								parent_id,
+								order_num
+						) t1,
+						(SELECT @pids := #{deptId}) t2
+				) t3
+			WHERE
+				ischild = #{deptId}
+		) AS dlist ON dlist.dept_id = s.dept_id
+	</select>
+ 	<select id="count" resultType="int">
+		select count(*) from sys_user
+		 <where>  
+		  		  <if test="username != null and username != ''"> and username = #{username} </if>
+		  		  <if test="password != null and password != ''"> and password = #{password} </if>
+		  		  <if test="deptId != null and deptId != ''"> and dept_id = #{deptId} </if>
+		  		  <if test="status != null and status != ''"> and status = #{status} </if>
+		  		  <if test="userIdCreate != null and userIdCreate != ''"> and user_id_create = #{userIdCreate} </if>
+		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
+		  		  <if test="gmtModified != null and gmtModified != ''"> and gmt_modified = #{gmtModified} </if>
+				  <if test="userType != null and userType != ''"> and user_type = #{userType} </if>
+				  <if test="registerType != null and registerType != ''"> and register_type = #{registerType} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.smartcold.manage.cold.entity.sys.UserDO" useGeneratedKeys="true" keyProperty="userId">
+		insert into sys_user
+		(
+			`username`, 
+			`password`,
+			`dept_id`, 
+			`status`,
+			`user_id_create`, 
+			`gmt_create`, 
+			`gmt_modified`, 
+			`user_type`,
+			`register_type`
+		)
+		values
+		(
+			#{username}, 
+			#{password},
+			#{deptId}, 
+			#{status},
+			#{userIdCreate}, 
+			#{gmtCreate}, 
+			#{gmtModified}, 
+			#{userType},
+			#{registerType}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.smartcold.manage.cold.entity.sys.UserDO">
+		update sys_user 
+		<set>
+			<if test="username != null">`username` = #{username}, </if>
+			<if test="password != null">`password` = #{password}, </if>
+			<if test="deptId != null">`dept_id` = #{deptId}, </if>
+			<if test="status != null">`status` = #{status}, </if>
+			<if test="userIdCreate != null">`user_id_create` = #{userIdCreate}</if>
+			<if test="gmtCreate != null">`gmt_create` = #{gmtCreate}, </if>
+			<if test="gmtModified != null">`gmt_modified` = #{gmtModified}, </if>
+			<if test="userType != null and userType != ''"> `user_type` = #{userType}, </if>
+			<if test="registerType != null and registerType != ''"> `register_type` = #{registerType} </if>
+		</set>
+		where user_id = #{userId}
+	</update>
+
+
+	<delete id="remove">
+		delete from sys_user where user_id = #{value}
+	</delete>
+
+
+	<delete id="batchRemove">
+		delete from sys_user where user_id in 
+		<foreach item="userId" collection="array" open="(" separator="," close=")">
+			#{userId}
+		</foreach>
+	</delete>
+
+	<select id="listAllDept" resultType="long">
+				select DISTINCT dept_id from sys_user
+	</select>
+</mapper>

@@ -17,8 +17,10 @@ app.config(["$provide", "$compileProvider", "$controllerProvider", "$filterProvi
 }]);
 //
 app.run(function ($rootScope, $state, $http, $cookies, $templateCache) {
-    $http.get('/i/user/findUser').success(function (data) {
+
+    $http.get('/i/sys/user/findUser').success(function (data) {
         if (data == null || data == "") {
+            console.log("未找到该用户！");
             document.location.href = "login.html";
             return;
         }
@@ -34,7 +36,8 @@ app.run(function ($rootScope, $state, $http, $cookies, $templateCache) {
         });
         $rootScope.user = undefined;
         window.sessionStorage.clear();
-//     	 $cookieStore.remove('token');
+        $cookieStore.remove('token');
+        console.log("退出！");
         window.location.href = "login.html";
     };
 
@@ -46,7 +49,7 @@ app.run(function ($rootScope, $state, $http, $cookies, $templateCache) {
 //app.factory('userService', ['$rootScope', '$state', '$http','$cookies',function ($rootScope, $state,$http,$cookies) {
 ////    return {
 ////        setUser: function (user) {
-////            
+////
 ////        }
 ////    };
 //}]);
@@ -74,15 +77,15 @@ app.config(function ($stateProvider, $urlRouterProvider, $ocLazyLoadProvider) {
             }
         })
         .state('fullData', {//验证数据库文件解析下载
-        url: '/fullData',
-        controller: 'fullData',
-        templateUrl: 'dist/view/verify/fullData.html',
-        resolve: {
-            deps: ["$ocLazyLoad", function ($ocLazyLoad) {
-                return $ocLazyLoad.load("dist/controllers/verify/fullData.js");
-            }]
-        }
-    })  .state('fullData1', {//验证数据库文件解析下载
+            url: '/fullData',
+            controller: 'fullData',
+            templateUrl: 'dist/view/verify/fullData.html',
+            resolve: {
+                deps: ["$ocLazyLoad", function ($ocLazyLoad) {
+                    return $ocLazyLoad.load("dist/controllers/verify/fullData.js");
+                }]
+            }
+        })  .state('fullData1', {//验证数据库文件解析下载
         url: '/fullData1',
         controller: 'fullData1',
         templateUrl: 'dist/view/verify/fullData1.html',
@@ -109,6 +112,16 @@ app.config(function ($stateProvider, $urlRouterProvider, $ocLazyLoadProvider) {
             resolve: {
                 deps: ["$ocLazyLoad", function ($ocLazyLoad) {
                     return $ocLazyLoad.load("dist/controllers/monitor/verifyUpdate.js");
+                }]
+            }
+        })
+        .state('setParameter', {// 参数配置
+            url: '/setParameter',
+            controller: 'setParameter',
+            templateUrl: 'dist/view/para/setParameter.html',
+            resolve: {
+                deps: ["$ocLazyLoad", function ($ocLazyLoad) {
+                    return $ocLazyLoad.load("dist/controllers/para/setParameter.js");
                 }]
             }
         })

@@ -1,7 +1,8 @@
 package com.smartcold.manage.cold.controller;
 
 import com.smartcold.manage.cold.entity.UserEntity;
-import com.smartcold.manage.cold.service.UserService;
+import com.smartcold.manage.cold.entity.sys.UserDO;
+import com.smartcold.manage.cold.service.sys.UserService;
 import com.smartcold.manage.cold.util.MD5Utils;
 import com.smartcold.manage.cold.util.R;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Copyright (C) SmartCold 版权所有
@@ -35,10 +38,13 @@ public class UserController extends BaseController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public R login(HttpServletRequest request, @RequestParam String userName, @RequestParam String password, String ipAddress, Boolean isAuto) {
         try {
-            UserEntity user = this.userService.login(userName, MD5Utils.encrypt(userName,password));
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("username", userName);
+            map.put("password", MD5Utils.encrypt(userName,password));
+            UserDO user = this.userService.getUserByNameAndPwd(map);
             if (user != null) {
                 String cookie = MD5Utils.getToken();
-                user.setToken(cookie);
+//                user.setToken(cookie);
                 request.getSession().setAttribute("user", user);
                return R.newData(user);
             }
