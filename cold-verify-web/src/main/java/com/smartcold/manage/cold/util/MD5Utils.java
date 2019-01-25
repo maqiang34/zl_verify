@@ -28,7 +28,7 @@ public class MD5Utils {
 
 	public static void main(String[] args) {
 
-		System.err.println(encrypt("counterman","counterman"));
+		System.err.println(encrypt("admin","admin"));
 	}
 
 }

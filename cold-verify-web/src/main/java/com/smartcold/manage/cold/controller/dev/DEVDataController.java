@@ -73,7 +73,7 @@ public class DEVDataController extends BaseController {
 //		}
 		BatchPoints batchPoints = BatchPoints.database("verify").consistency(InfluxDB.ConsistencyLevel.ALL).build();
 		for (int i = 0; i <1000 ; i++) {
-			Point point = Point.measurement("DevData").time(System.currentTimeMillis() / 1000, TimeUnit.SECONDS).tag("oid", "1").tag("key", "0").addField("value", "3.3").build();
+			Point point = Point.measurement("DevData").time(System.currentTimeMillis() / 1000, TimeUnit.SECONDS).tag("oid", Integer.toString(i)).tag("key", "0").addField("value", "3.3").build();
 			batchPoints.point(point);
 		}
            this.influxDB.write(batchPoints);
