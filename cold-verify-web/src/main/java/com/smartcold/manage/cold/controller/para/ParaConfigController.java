@@ -34,7 +34,7 @@ public class ParaConfigController {
      * @return
      */
     @PostMapping(value = "/setPara")
-    public R savePara(ParaDo paraDo) {
+    public R savePara(@RequestBody ParaDo paraDo) {
         try {
             if (paraDo.getPmid() == null) {
                 return R.newFailure("参数为空");

@@ -6,11 +6,11 @@ app.controller('setCsParameter', function ($scope, $http, $rootScope, $state, $s
 
     $scope.save = function() {
         var para = $scope.model;
-        // var jsonpara = angular.toJson(para);
+        var jsonpara = angular.toJson(para);
         // var proid= $stateParams.powerid;
         console.log("请求参数为：" + para);
         var data ={
-            "mapping" : para,
+            "mapping" : jsonpara,
             "pmid" : 1
         };
         // data.mapping = para;
