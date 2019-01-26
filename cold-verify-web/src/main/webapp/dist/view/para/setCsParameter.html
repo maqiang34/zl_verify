@@ -1,0 +1,229 @@
+<!-- 冷库参数配置-->
+<form class="form-horizontal" role="form" id="csparaform">
+    <fieldset>
+        <legend>冷库参数配置</legend>
+    <div class="form-group">
+        <label class="col-sm-3 control-label"><em class="gg-star">*</em>冷库是否形状规则:</label>
+        <div class="col-sm-8">
+            <div class="radio i-checks">
+                <label class="radio-inline">
+                    <input
+                            type="radio" ng-model="shaperuleIs" name="shaperuleIs" value="0"/>否
+                </label><label class="radio-inline">
+                <input
+                        type="radio" ng-model="shaperuleIs" name="shaperuleIs"  value="1"/>是
+            </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label"><em class="gg-star">*</em>长宽高:</label>
+        <div class="col-sm-2">
+            <input type="number" id="length" min="0" ng-required ng-model="length" name="length" data="count"  placeholder="长（单位：m）" class="form-control">
+        </div>
+        <div class="col-sm-2">
+            <input type="number" id="width" min="0" ng-required ng-model="width" name="width" data="count"  placeholder="宽（单位：m）" class="form-control">
+        </div>
+        <div class="col-sm-2">
+            <input type="number" id="height" min="0" ng-required ng-model="height" name="height" data="count" placeholder="高（单位：m）" class="form-control">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label"><em class="gg-star">*</em>体积:</label>
+        <div class="col-sm-8">
+            <div class="input-group">
+                <input type="number" class="form-control" ng-model="model.volume" id="volume" min="0"
+                       name="volume"
+                       placeholder="体积"  aria-describedby="basic-addon" readonly>
+                <span class="input-group-addon">m³</span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label"><em class="gg-star">*</em>主风机数:</label>
+        <div class="col-sm-8">
+            <input type="number" min="0" id="fanMasterNum" ng-model="model.fanMasterNum" name="fanMasterNum" class="form-control">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label"><em class="gg-star">*</em>主风机温度设定:</label>
+        <div class="col-sm-4">
+            <div class="input-group">
+                <input type="number" min="-30" max="30" ng-required  class="form-control" id="fanMasterTemperatureMin"
+                       name="fanMasterTemperatureMin" ng-model="model.fanMasterTemperatureMin"
+                       placeholder="最低温度" aria-describedby="basic-addon">
+                <span class="input-group-addon">°C</span>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="input-group">
+                <input type="number" min="0" max="30" ng-required  class="form-control" id="fanMasterTemperatureMax"
+                       name="fanMasterTemperatureMax" ng-model="model.fanMasterTemperatureMax"
+                       placeholder="最高温度" aria-describedby="basic-addon">
+                <span class="input-group-addon">°C</span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label"><em class="gg-star"></em>备用风机数:</label>
+        <div class="col-sm-8">
+            <input type="number" min="0" id="fanSpareNum" ng-model="model.fanSpareNum" name="fanSpareNum" placeholder="请填写备用风机数量（若没有备用风机请填写0或者不填写）" class="form-control">
+        </div>
+    </div>
+    <div class="form-group" id="hidsparetemp">
+        <label class="col-sm-3 control-label"><em class="gg-star"></em>备用风机温度设定:</label>
+        <div class="col-sm-4">
+            <div class="input-group">
+                <input type="number" min="-30" max="30" ng-required  class="form-control" id="fanSpareTemperatureMin"
+                       name="fanSpareTemperatureMin" ng-model="model.fanSpareTemperatureMin"
+                       placeholder="最低温度" aria-describedby="basic-addon" disabled>
+                <span class="input-group-addon">°C</span>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="input-group">
+                <input type="number" min="0" max="30" ng-required  class="form-control" id="fanSpareTemperatureMax"
+                       name="fanSpareTemperatureMax" ng-model="model.fanSpareTemperatureMax"
+                       placeholder="最高温度" aria-describedby="basic-addon" disabled>
+                <span class="input-group-addon">°C</span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label"><em class="gg-star">*</em>出入口数:</label>
+        <div class="col-sm-3">
+            <input type="number" min="0" id="gateNum" ng-model="model.gateNum" name="gateNum" placeholder="请填写出入口数量" class="form-control">
+        </div>
+        <label class="col-sm-2 control-label"><em class="gg-star">*</em>有无风帘:</label>
+        <div class="col-sm-3">
+            <div class="radio i-checks">
+                <label class="radio-inline">
+                    <input
+                            type="radio" ng-model="model.curtainClass" name="curtainClass" value="0"/>无
+                </label><label class="radio-inline">
+                <input
+                        type="radio" ng-model="model.curtainClass" name="curtainClass" value="1"/>有
+            </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label"><em class="gg-star">*</em>有无门帘:</label>
+        <div class="col-sm-8">
+            <div class="radio i-checks">
+                <label class="radio-inline">
+                    <input
+                            type="radio" ng-model="model.doorCurtainClass"  name="doorCurtainClass" value="0"/>无
+                </label><label class="radio-inline">
+                <input
+                        type="radio" ng-model="model.doorCurtainClass"  name="doorCurtainClass" value="1"/>有
+            </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label"><em class="gg-star"></em>货架数量:</label>
+        <div class="col-sm-8">
+            <input type="number" min="0" id="shelvesNum" ng-model="model.shelvesNum" name="shelvesNum"  placeholder="请填写货架数量" class="form-control">
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label"><em class="gg-star"></em>温湿度自动检测系统终端:</label>
+        <div class="col-sm-8">
+            <div class="radio i-checks">
+                <label class="radio-inline">
+                    <input
+                            type="radio" ng-model="model.monitorSystemTerminal" name="monitorSystemTerminal" value="0"/>无
+                </label><label class="radio-inline">
+                <input
+                        type="radio" ng-model="model.monitorSystemTerminal" name="monitorSystemTerminal"  value="1"/>是
+            </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group" id="hidwenshidu">
+        <label class="col-sm-3 control-label"><em class="gg-star"></em>监控系统探头数量:</label>
+        <div class="col-sm-3">
+            <input type="number" min="0" id="monitorSystemDetectorNum" ng-model="model.monitorSystemDetectorNum" name="monitorSystemDetectorNum" placeholder="请填写监控系统探头数量" class="form-control">
+        </div>
+        <label class="col-sm-2 control-label"><em class="gg-star"></em>厂家:</label>
+        <div class="col-sm-3">
+            <input type="text" id="monitorSystemDetectorManufacturer" ng-model="model.monitorSystemDetectorManufacturer" name="monitorSystemDetectorManufacturer" placeholder="请填写厂家名称" class="form-control">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label"><em class="gg-star">*</em>验证对象温度控制范围目标:</label>
+        <div class="col-sm-4">
+            <div class="input-group">
+                <input type="number" min="-30" max="30" ng-required  class="form-control" id="rangeMin"
+                       name="rangeMin" ng-model="model.rangeMin"
+                       placeholder="最低温度" aria-describedby="basic-addon">
+                <span class="input-group-addon">°C</span>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="input-group">
+                <input type="number" min="0" max="30" ng-required  class="form-control" id="rangeMax"
+                       name="rangeMax" ng-model="model.rangeMax"
+                       placeholder="最高温度" aria-describedby="basic-addon">
+                <span class="input-group-addon">°C</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label"><em class="gg-star">*</em>冷库外部环境:</label>
+        <div class="col-sm-8">
+            <div class="radio i-checks">
+                <label class="radio-inline">
+                    <input
+                            type="radio" ng-model="model.outsideEnvi" name="outsideEnvi" value="1001"/>阴凉库
+                </label><label class="radio-inline">
+                <input
+                        type="radio" ng-model="model.outsideEnvi" name="outsideEnvi" value="1002"/>大气环境
+            </label><label class="radio-inline">
+                <input
+                        type="radio" ng-model="model.outsideEnvi" name="outsideEnvi" value="1003"/>缓冲区
+            </label><label class="radio-inline">
+                <input
+                        type="radio" ng-model="model.outsideEnvi" name="outsideEnvi" value="1004"/>常温库
+            </label>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label"><em class="gg-star">*</em>备用发电机组:</label>
+        <div class="col-sm-8">
+            <div class="radio i-checks">
+                <label class="radio-inline">
+                    <input
+                            type="radio" ng-required  name="generatorsGroup" value="0"/>无
+                </label><label class="radio-inline">
+                <input
+                        type="radio" ng-required  name="generatorsGroup" value="1"/>是
+            </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group" >
+        <label class="col-sm-3 control-label"><em class="gg-star">*</em>三维示意图:</label>
+        <div class="col-sm-9 uploadimg"style="display: flex;flex-wrap:nowrap"  >
+            <label for="threedImgUrl" class="upimg"  >+</label>
+            <input type="file"  id="threedImgUrl"  name="blFile" title="" multiple style="display: none">
+            <div id="imgthreedImgUrl">
+            </div>
+        </div>
+    </div>
+    <div class="gg-btnGroup">
+        <button type="button" class="btn btn-sm btn-primary" ng-click="save()">完成</button>
+    </div>
+    </fieldset>
+
+</form>
+

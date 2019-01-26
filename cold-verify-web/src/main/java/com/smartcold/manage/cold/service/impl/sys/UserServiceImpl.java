@@ -45,17 +45,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserDO> list(Map<String, Object> map) {
+    public List<UserDO> list(UserDO map) {
         return userMapper.list(map);
     }
 
     @Override
-    public List<UserDO> selectlistByDeptId(Map<String, Object> map) {
+    public List<UserDO> selectlistByDeptId(UserDO map) {
         return userMapper.selectlistByDeptId(map);
     }
 
     @Override
-    public UserDO getUserByNameAndPwd(Map<String, Object> map) {
+    public UserDO getUserByNameAndPwd(UserDO map) {
         return userMapper.getUserByNameAndPwd(map);
     }
 
@@ -65,7 +65,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int countListByDeptId(Map<String, Object> map) {
+    public int countListByDeptId(UserDO map) {
         return userMapper.countListByDeptId(map);
     }
 
@@ -117,7 +117,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean exit(Map<String, Object> params) {
+    public boolean exit(UserDO params) {
         boolean exit;
         exit = userMapper.list(params).size() > 0;
         return exit;
@@ -187,7 +187,7 @@ public class UserServiceImpl implements UserService {
             tree.setState(state);
             trees.add(tree);
         }
-        List<UserDO> users = userMapper.list(new HashMap<String, Object>(16));
+        List<UserDO> users = userMapper.list(new UserDO());
         for (UserDO user : users) {
             TreeModel<DeptDO> tree = new TreeModel<DeptDO>();
             tree.setId(user.getUserId().toString());

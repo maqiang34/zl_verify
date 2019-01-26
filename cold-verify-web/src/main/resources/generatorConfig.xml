@@ -24,7 +24,7 @@
             <property name="forceBigDecimals" value="false"/>  
         </javaTypeResolver> 
         <!--  实体类 -->
-		<javaModelGenerator targetPackage="com.smartcold.manage.cold.entity.newdb" targetProject="./src/main/java" />
+		<javaModelGenerator targetPackage="com.smartcold.manage.cold.entity" targetProject="./src/main/java" />
 		
 		<sqlMapGenerator targetPackage="config.sqlmapnew" targetProject="./src/main/resources"  />
 		

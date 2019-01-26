@@ -14,15 +14,15 @@ import java.util.Set;
 public interface UserService {
 	UserDO get(Long id);
 
-	List<UserDO> list(Map<String, Object> map);
+	List<UserDO> list(UserDO map);
 
-	List<UserDO> selectlistByDeptId(Map<String, Object> map);
+	List<UserDO> selectlistByDeptId(UserDO map);
 
-	UserDO getUserByNameAndPwd(Map<String, Object> map);
+	UserDO getUserByNameAndPwd(UserDO map);
 
 	int count(Map<String, Object> map);
 
-	int countListByDeptId(Map<String, Object> map);
+	int countListByDeptId(UserDO map);
 
 	int save(UserDO user);
 
@@ -34,7 +34,7 @@ public interface UserService {
 
 	int batchremove(Long[] userIds);
 
-	boolean exit(Map<String, Object> params);
+	boolean exit(UserDO params);
 
 	Set<String> listRoles(Long userId);
 

@@ -39,30 +39,30 @@ public class SysUserController extends BaseController {
 		return prefix + "/user";
 	}
 
-	@GetMapping("/list")
-	@ResponseBody
-	PageUtils list(@RequestParam Map<String, Object> params) {
-		logger.info("===========查询队列表数据");
-		// 查询列表数据
-		Query query = new Query(params);
-        logger.info("Query:"+query.toString());
-        if (query.get("deptId") == null || "".equals(query.get("deptId"))) {
-			query.put("deptId", 0);
-		}else{
-        	String object = (String)query.get("deptId");
-        	query.put("deptId", Long.valueOf(object));
-		}
-		List<UserDO> sysUserList = userService.selectlistByDeptId(query);
-		int total = 0;
-		if (sysUserList.isEmpty()) {
-			sysUserList = userService.list(query);
-			total = userService.count(query);
-		}else{
-			total = userService.countListByDeptId(query);
-		}
-		PageUtils pageUtil = new PageUtils(sysUserList, total);
-		return pageUtil;
-	}
+//	@GetMapping("/list")
+//	@ResponseBody
+//	PageUtils list(@RequestParam UserDO userDO) {
+//		logger.info("===========查询队列表数据");
+//		// 查询列表数据
+////		Query query = new Query(params);
+////        logger.info("Query:"+query.toString());
+//        if (userDO.getDeptId() == null || "".equals(userDO.getDeptId())) {
+//			userDO.setDeptId(new Long("0"));
+//		}else{
+//        	String object = (String)query.get("deptId");
+//        	query.put("deptId", Long.valueOf(object));
+//		}
+//		List<UserDO> sysUserList = userService.selectlistByDeptId(userDO);
+//		int total = 0;
+//		if (sysUserList.isEmpty()) {
+//			sysUserList = userService.list(query);
+//			total = userService.count(query);
+//		}else{
+//			total = userService.countListByDeptId(query);
+//		}
+//		PageUtils pageUtil = new PageUtils(sysUserList, total);
+//		return pageUtil;
+//	}
 
 //	@RequiresPermissions("sys:user:add")
 	@GetMapping("/add")
@@ -137,11 +137,11 @@ public class SysUserController extends BaseController {
 	}
 
 	@PostMapping("/exit")
-	@ResponseBody
-	boolean exit(@RequestParam Map<String, Object> params) {
-		// 存在，不通过，false
-		return !userService.exit(params);
-	}
+//	@ResponseBody
+//	boolean exit(@RequestParam Map<String, Object> params) {
+//		// 存在，不通过，false
+//		return !userService.exit(params);
+//	}
 
 //	@RequiresPermissions("sys:user:resetPwd")
 	@GetMapping("/resetPwd/{id}")

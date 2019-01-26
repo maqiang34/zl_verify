@@ -4,6 +4,7 @@ import com.smartcold.manage.cold.controller.BaseController;
 import com.smartcold.manage.cold.entity.sys.UserDO;
 import com.smartcold.manage.cold.service.sys.MenuService;
 import com.smartcold.manage.cold.service.sys.UserService;
+import com.smartcold.manage.cold.util.MD5Utils;
 import com.smartcold.manage.cold.util.R;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.slf4j.Logger;
@@ -54,12 +55,12 @@ public class LoginController extends BaseController {
 	@PostMapping("/login")
 	@ResponseBody
     R ajaxLogin(UserDO user, HttpServletRequest request) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("username", user.getUsername());
-		map.put("password", user.getPassword());
 		R r = new R();
 		try {
-			UserDO userDO = userService.getUserByNameAndPwd(map);
+			String MD5pwd = MD5Utils.encrypt(user.getUsername(), user.getPassword());
+			System.out.println("密码是："+ MD5pwd);
+			user.setPassword(MD5pwd);
+			UserDO userDO = userService.getUserByNameAndPwd(user);
 			request.getSession().setAttribute("userLogin", userDO);
 			if (userDO != null) {
 				r.put("mod", userDO);

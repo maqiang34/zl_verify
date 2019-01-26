@@ -32,6 +32,15 @@ public class UserDO implements Serializable {
     // 注册类型（1：中冷人员注册，2：用户注册）
     private Long registerType;
 
+
+    public UserDO() {
+    }
+
+    public UserDO(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
     public Long getUserId() {
         return userId;
     }

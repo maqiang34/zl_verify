@@ -17,15 +17,15 @@ public interface UserDao {
 
 	UserDO get(Long userId);
 	
-	List<UserDO> list(Map<String, Object> map);
+	List<UserDO> list(UserDO map);
 
-	UserDO getUserByNameAndPwd(Map<String, Object> map);
+	UserDO getUserByNameAndPwd(UserDO map);
 
-	List<UserDO> selectlistByDeptId(Map<String, Object> map);
+	List<UserDO> selectlistByDeptId(UserDO map);
 
 	int count(Map<String, Object> map);
 
-	int countListByDeptId(Map<String, Object> map);
+	int countListByDeptId(UserDO map);
 
 	int save(UserDO user);
 	

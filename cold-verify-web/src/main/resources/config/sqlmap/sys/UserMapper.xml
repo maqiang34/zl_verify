@@ -41,15 +41,8 @@
 		select `username`,`password`,`dept_id`,`status`,`user_id_create`,`gmt_create`,
 		`gmt_modified`,`user_type`,`register_type` from sys_user
 		<where>
-			<if test="username != null and username !=''"> and username = #{username}</if>
-			<if test="password != null and password != ''"> and password = #{password} </if>
-			<if test="deptId != null and deptId != ''"> and dept_id = #{deptId} </if>
-			<if test="status != null and status != ''"> and status = #{status} </if>
-			<if test="userIdCreate != null and userIdCreate != ''"> and user_id_create = #{userIdCreate} </if>
-			<if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
-			<if test="gmtModified != null and gmtModified != ''"> and gmt_modified = #{gmtModified} </if>
-			<if test="userType != null and userType != ''"> and user_type = #{userType} </if>
-			<if test="registerType != null and registerType != ''"> and register_type = #{registerType} </if>
+			and username = #{username}
+		    and password = #{password}
 		</where>
 	</select>
 

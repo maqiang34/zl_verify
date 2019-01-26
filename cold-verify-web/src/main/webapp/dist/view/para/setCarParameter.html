@@ -1,0 +1,224 @@
+<!-- 文件上传-->
+<form class="form-horizontal" role="form">
+    <fieldset>
+        <legend>冷藏车参数配置</legend>
+    <div class="form-group">
+        <label class="col-sm-3 control-label"><em class="gg-star">*</em>冷库是否形状规则:</label>
+        <div class="col-sm-8">
+            <div class="radio i-checks">
+                <label class="radio-inline">
+                    <input
+                            type="radio" name="shaperuleIs" value="0"/>否
+                </label><label class="radio-inline">
+                <input
+                        type="radio" name="shaperuleIs"  value="1"/>是
+            </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label"><em class="gg-star">*</em>长宽高:</label>
+        <div class="col-sm-2">
+            <input type="number" id="length" min="0" name="length" data="count"  placeholder="长（单位：m）" class="form-control">
+        </div>
+        <div class="col-sm-2">
+            <input type="number" id="width" min="0" name="width" data="count"  placeholder="宽（单位：m）" class="form-control">
+        </div>
+        <div class="col-sm-2">
+            <input type="number" id="height" min="0" name="height" data="count" placeholder="高（单位：m）" class="form-control">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label"><em class="gg-star">*</em>体积:</label>
+        <div class="col-sm-8">
+            <div class="input-group">
+                <input type="number" class="form-control" id="volume" min="0"
+                       name="volume"
+                       placeholder="体积" aria-describedby="basic-addon" readonly>
+                <span class="input-group-addon">m³</span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label"><em class="gg-star">*</em>主风机数:</label>
+        <div class="col-sm-8">
+            <input type="number" min="0" id="fanMasterNum" name="fanMasterNum" class="form-control">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label"><em class="gg-star">*</em>主风机温度设定:</label>
+        <div class="col-sm-4">
+            <div class="input-group">
+                <input type="number" min="-30" max="30" class="form-control" id="fanMasterTemperatureMin"
+                       name="fanMasterTemperatureMin"
+                       placeholder="最低温度" aria-describedby="basic-addon">
+                <span class="input-group-addon">°C</span>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="input-group">
+                <input type="number" min="0" max="30" class="form-control" id="fanMasterTemperatureMax"
+                       name="fanMasterTemperatureMax"
+                       placeholder="最高温度" aria-describedby="basic-addon">
+                <span class="input-group-addon">°C</span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label"><em class="gg-star"></em>备用风机数:</label>
+        <div class="col-sm-8">
+            <input type="number" min="0" id="fanSpareNum" name="fanSpareNum" placeholder="请填写备用风机数量（若没有备用风机请填写0或者不填写）" class="form-control">
+        </div>
+    </div>
+    <div class="form-group" id="hidsparetemp">
+        <label class="col-sm-3 control-label"><em class="gg-star"></em>备用风机温度设定:</label>
+        <div class="col-sm-4">
+            <div class="input-group">
+                <input type="number" min="-30" max="30" class="form-control" id="fanSpareTemperatureMin"
+                       name="fanSpareTemperatureMin"
+                       placeholder="最低温度" aria-describedby="basic-addon" disabled>
+                <span class="input-group-addon">°C</span>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="input-group">
+                <input type="number" min="0" max="30" class="form-control" id="fanSpareTemperatureMax"
+                       name="fanSpareTemperatureMax"
+                       placeholder="最高温度" aria-describedby="basic-addon" disabled>
+                <span class="input-group-addon">°C</span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label"><em class="gg-star">*</em>出入口数:</label>
+        <div class="col-sm-3">
+            <input type="number" min="0" id="gateNum" name="gateNum" placeholder="请填写出入口数量" class="form-control">
+        </div>
+        <label class="col-sm-2 control-label"><em class="gg-star">*</em>有无风帘:</label>
+        <div class="col-sm-3">
+            <div class="radio i-checks">
+                <label class="radio-inline">
+                    <input
+                            type="radio" name="curtainClass" value="0"/>无
+                </label><label class="radio-inline">
+                <input
+                        type="radio" name="curtainClass" value="1"/>有
+            </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label"><em class="gg-star">*</em>有无门帘:</label>
+        <div class="col-sm-8">
+            <div class="radio i-checks">
+                <label class="radio-inline">
+                    <input
+                            type="radio" name="doorCurtainClass" value="0"/>无
+                </label><label class="radio-inline">
+                <input
+                        type="radio" name="doorCurtainClass" value="1"/>有
+            </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label"><em class="gg-star"></em>货架数量:</label>
+        <div class="col-sm-8">
+            <input type="number" min="0" id="shelvesNum" name="shelvesNum"  placeholder="请填写货架数量" class="form-control">
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label"><em class="gg-star"></em>温湿度自动检测系统终端:</label>
+        <div class="col-sm-8">
+            <div class="radio i-checks">
+                <label class="radio-inline">
+                    <input
+                            type="radio" name="monitorSystemTerminal" value="0"/>无
+                </label><label class="radio-inline">
+                <input
+                        type="radio" name="monitorSystemTerminal"  value="1"/>是
+            </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group" id="hidwenshidu">
+        <label class="col-sm-3 control-label"><em class="gg-star"></em>监控系统探头数量:</label>
+        <div class="col-sm-3">
+            <input type="number" min="0" id="monitorSystemDetectorNum" name="monitorSystemDetectorNum" placeholder="请填写监控系统探头数量" class="form-control">
+        </div>
+        <label class="col-sm-2 control-label"><em class="gg-star"></em>厂家:</label>
+        <div class="col-sm-3">
+            <input type="text" id="monitorSystemDetectorManufacturer" name="monitorSystemDetectorManufacturer" placeholder="请填写厂家名称" class="form-control">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label"><em class="gg-star">*</em>验证对象温度控制范围目标:</label>
+        <div class="col-sm-4">
+            <div class="input-group">
+                <input type="number" min="-30" max="30" class="form-control" id="rangeMin"
+                       name="rangeMin"
+                       placeholder="最低温度" aria-describedby="basic-addon">
+                <span class="input-group-addon">°C</span>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="input-group">
+                <input type="number" min="0" max="30" class="form-control" id="rangeMax"
+                       name="rangeMax"
+                       placeholder="最高温度" aria-describedby="basic-addon">
+                <span class="input-group-addon">°C</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label"><em class="gg-star">*</em>冷库外部环境:</label>
+        <div class="col-sm-8">
+            <div class="radio i-checks">
+                <label class="radio-inline">
+                    <input
+                            type="radio" name="outsideEnvi" value="1001"/>阴凉库
+                </label><label class="radio-inline">
+                <input
+                        type="radio" name="outsideEnvi" value="1002"/>大气环境
+            </label><label class="radio-inline">
+                <input
+                        type="radio" name="outsideEnvi" value="1003"/>缓冲区
+            </label><label class="radio-inline">
+                <input
+                        type="radio" name="outsideEnvi" value="1004"/>常温库
+            </label>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label"><em class="gg-star">*</em>备用发电机组:</label>
+        <div class="col-sm-8">
+            <div class="radio i-checks">
+                <label class="radio-inline">
+                    <input
+                            type="radio" name="generatorsGroup" value="0"/>无
+                </label><label class="radio-inline">
+                <input
+                        type="radio" name="generatorsGroup" value="1"/>是
+            </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group" >
+        <label class="col-sm-3 control-label"><em class="gg-star">*</em>三维示意图:</label>
+        <div class="col-sm-9 uploadimg"style="display: flex;flex-wrap:nowrap"  >
+            <label for="threedImgUrl" class="upimg"  >+</label>
+            <input type="file"  id="threedImgUrl"  name="blFile" title="" multiple style="display: none">
+            <div id="imgthreedImgUrl">
+            </div>
+        </div>
+    </div>
+    </fieldset>
+</form>

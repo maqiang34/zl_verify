@@ -38,10 +38,7 @@ public class UserController extends BaseController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public R login(HttpServletRequest request, @RequestParam String userName, @RequestParam String password, String ipAddress, Boolean isAuto) {
         try {
-            Map<String, Object> map = new HashMap<String, Object>();
-            map.put("username", userName);
-            map.put("password", MD5Utils.encrypt(userName,password));
-            UserDO user = this.userService.getUserByNameAndPwd(map);
+            UserDO user = this.userService.getUserByNameAndPwd(new UserDO(userName, password));
             if (user != null) {
                 String cookie = MD5Utils.getToken();
 //                user.setToken(cookie);

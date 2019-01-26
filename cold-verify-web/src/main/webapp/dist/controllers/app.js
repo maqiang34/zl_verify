@@ -115,13 +115,13 @@ app.config(function ($stateProvider, $urlRouterProvider, $ocLazyLoadProvider) {
                 }]
             }
         })
-        .state('setParameter', {// 参数配置
-            url: '/setParameter',
-            controller: 'setParameter',
-            templateUrl: 'dist/view/para/setParameter.html',
+        .state('setCsParameter', {// 参数配置
+            url: '/setCsParameter/{powerid}',
+            controller: 'setCsParameter',
+            templateUrl: 'dist/view/para/setCsParameter.html',
             resolve: {
                 deps: ["$ocLazyLoad", function ($ocLazyLoad) {
-                    return $ocLazyLoad.load("dist/controllers/para/setParameter.js");
+                    return $ocLazyLoad.load("dist/controllers/para/setCsParameter.js");
                 }]
             }
         })
