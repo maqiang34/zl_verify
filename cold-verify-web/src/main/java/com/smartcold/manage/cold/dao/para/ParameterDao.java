@@ -14,4 +14,5 @@ public interface ParameterDao {
     int update(ParaDo paraDo);
 
     int remove(Integer id);
+
 }

@@ -9,7 +9,7 @@
 	</select>
 
 	<select id="getbyproId" resultType="com.smartcold.manage.cold.entity.para.ParaDo">
-		select * from p_paraconf where pmid = #{pmid}
+		select * from p_paraconf where pmid = #{proId}
 	</select>
 
 
@@ -17,11 +17,11 @@
 	<insert id="save" parameterType="com.smartcold.manage.cold.entity.para.ParaDo" useGeneratedKeys="true" keyProperty="id">
 		insert into p_paraconf
 		(
-			`pmid`,`mapping`,`addtime`
+			`pmid`,`mapping`
 		)
 		values
 		(
-			#{pmid},#{mapping},#{addtime}
+			#{pmid},#{mapping}
 		)
 	</insert>
 	 
@@ -30,13 +30,13 @@
 		<set>
 			<if test="pmid != null"> `pmid` = #{pmid}, </if>
 			<if test="mapping != null and mapping !=''">  `mapping` = #{mapping}, </if>
-			<if test="addtime != null"> `addtime` = #{addtime}, </if>
 		</set>
 		where id = #{id}
 	</update>
 	
 	<delete id="remove">
-		delete from p_paraconf where id = #{value}
+		delete from p_paraconf where pmid = #{value}
 	</delete>
-	
+
+
 </mapper>

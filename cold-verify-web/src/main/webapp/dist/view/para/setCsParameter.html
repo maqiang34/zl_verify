@@ -1,4 +1,64 @@
 <!-- 冷库参数配置-->
+<style type="text/css">
+                              /*.box{*/
+                              /*position:relative;*/
+                              /*overflow: hidden;*/
+                              /*}*/
+                          img{
+                              display:block;
+                              width:100%;
+                              height:100%;
+                          }
+    .imgpreview{
+        width: 150px;
+        height: 150px;
+    }
+    #box{
+        display: flex;
+        flex-wrap: nowrap;
+        border-radius: 5px;
+        color: #ccc;
+        width:150px;
+        height:150px;
+        border: 1px solid #ccc;
+        background-color: #fff;
+        margin-bottom: 10px;
+        margin-right: 10px;
+
+    }
+    .delimg{
+        position:absolute;
+        color:#ccc;
+        float: right;
+    }
+    .upimg{
+        font-size: 100px;
+        border-radius: 5px;
+        color: #ccc;
+        width:150px;
+        height:150px;
+        text-align: center;
+        line-height: 150px;
+        border: 1px solid #ccc;
+        background-color: #fff;
+        float:left;
+        cursor: pointer;
+        margin-right:10px;
+    }
+    .upimg:hover{
+        border:1px solid #18a689;
+        color:#606266;
+    }
+    #imgthreedImgUrl,#imglaythreedImgUrl,#imguniformityLabel,#imgfanLabel
+    ,#imggateDeadEndLabe,#imgspmsdepLabel,#imgmonitorDetectorLabel,#imgplanLayoutLabel,
+    #imginternalPlanLayoutLabel,#imgoverlookedSuggestDiagramLabel,#imgsideViewSuggestDiagramLabel{
+        /*flex-wrap:nowrap;*/
+        display: flex;
+        width:90%;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+</style>
 <form class="form-horizontal" role="form" id="csparaform">
     <fieldset>
         <legend>冷库参数配置</legend>
@@ -19,13 +79,13 @@
     <div class="form-group">
         <label class="col-sm-3 control-label"><em class="gg-star">*</em>长宽高:</label>
         <div class="col-sm-2">
-            <input type="number" id="length" min="0" ng-required ng-model="length" name="length" data="count"  placeholder="长（单位：m）" class="form-control">
+            <input type="number" id="length" min="0"  ng-model="length" name="length" data="count"  placeholder="长（单位：m）" class="form-control">
         </div>
         <div class="col-sm-2">
-            <input type="number" id="width" min="0" ng-required ng-model="width" name="width" data="count"  placeholder="宽（单位：m）" class="form-control">
+            <input type="number" id="width" min="0" ng-model="width" name="width" data="count"  placeholder="宽（单位：m）" class="form-control">
         </div>
         <div class="col-sm-2">
-            <input type="number" id="height" min="0" ng-required ng-model="height" name="height" data="count" placeholder="高（单位：m）" class="form-control">
+            <input type="number" id="height" min="0" ng-model="height" name="height" data="count" placeholder="高（单位：m）" class="form-control">
         </div>
     </div>
 
@@ -220,6 +280,203 @@
             </div>
         </div>
     </div>
+        <div class="form-group">
+            <div class="ibox-title" style="padding-bottom: 0;">
+                <h3 class="text-center">布点方案参数</h3>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label"><em class="gg-star"></em>布点方案:</label>
+            <div class="col-sm-2">
+                <select data-placeholder="选择布点方案" class="form-control chosen-select"
+                        tabindex="2" id="layoutplans" name="layoutplanId" style="width: 100%" onchange="changelayout(this)">
+                        <option value="">选择类别</option>
+                        <div ng-repeat="lay in lisLay"></div>
+                            <option ng-value="{{lay.id}}">{{lay.name}}</option>
+                </select>
+            </div>
+            <div class="col-sm-2">
+                <button type="button" class="btn btn-primary" id="managelay">布点方案管理</button>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label"><em class="gg-star">*</em>均匀性测点编号:</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control"  ng-model="cslayout.uniformityMeasureNo" id="uniformityMeasureNo" name="uniformityMeasureNo">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label"><em class="gg-star">*</em>主风机测点编号:</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" ng-model="cslayout.fanMasterMeasureNo"  id="fanMasterMeasureNo" name="fanMasterMeasureNo">
+            </div>
+        </div>
+        <div class="form-group" id="hidsoarenum">
+            <label class="col-sm-3 control-label"><em class="gg-star"></em>备用风机测点编号:</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" ng-model="cslayout.fanSpareMeasureNo" disabled id="fanSpareMeasureNo" name="fanSpareMeasureNo">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label"><em class="gg-star">*</em>回风口编号:</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" ng-model="cslayout.returnAirGrilleNo" id="returnAirGrilleNo" name="returnAirGrilleNo">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label"><em class="gg-star">*</em>出入口测点编号:</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" ng-model="cslayout.gateMeasureNo" disabled id="gateMeasureNo" name="gateMeasureNo">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label"><em class="gg-star">*</em>死角测点编号:</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" ng-model="cslayout.deadEndMeasureNo" id="deadEndMeasureNo" name="deadEndMeasureNo">
+            </div>
+        </div>
+        <div class="form-group" id="hidshelves">
+            <label class="col-sm-3 control-label"><em class="gg-star"></em>货架测点编号:</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" ng-model="cslayout.shelvesMeasureNo" disabled id="shelvesMeasureNo" name="shelvesMeasureNo">
+            </div>
+        </div>
+        <div class="form-group" id="hidDetector">
+            <label class="col-sm-3 control-label"><em class="gg-star"></em>温湿度监控系统探头测点编号:</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" ng-model="cslayout.monitorSystemDetectorMeasureNo" id="monitorSystemDetectorMeasureNo" name="monitorSystemDetectorMeasureNo">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label"><em class="gg-star">*</em>几何中心设备编号:</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" ng-model="cslayout.geometricCenterPoint" id="geometricCenterPoint" name="geometricCenterPoint">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label"><em class="gg-star"></em>照明灯编号:</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" ng-model="cslayout.lampNo" id="lampNo" name="lampNo">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label"><em class="gg-star">*</em>环境测点编号:</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" ng-model="cslayout.enviMeasureNo" id="enviMeasureNo" name="enviMeasureNo">
+                备注：以上编号请以逗号分隔,例如:"1,2,3",其中"1-3"表示连续的编号,等价于"1,2,3"
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label"><em class="gg-star">*</em>三维立体图:</label>
+            <div class="col-sm-9 uploadimg" style="display: flex;flex-wrap:nowrap;">
+                <label for="laythreedImgUrl" class="upimg">+</label>
+                <input type="file"  id="laythreedImgUrl"  name="blFile" title="" multiple style="display: none"><!--threedFile-->
+                <div id="imglaythreedImgUrl">
+                </div>
+            </div>
+
+
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label"><em class="gg-star">*</em>均匀性布点标准标注图:</label>
+            <div class="col-sm-9 uploadimg" style="display: flex;flex-wrap:nowrap;">
+
+                <label for="uniformityLabel" class="upimg">+</label>
+                <input type="file" class="form-control" id="uniformityLabel" name="blFile" multiple style="display: none">
+                <div  id="imguniformityLabel">
+                </div>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label"><em class="gg-star">*</em>风机、回风口布点标准标注图:</label>
+            <div class="col-sm-9 uploadimg" style="display: flex;flex-wrap:nowrap;">
+
+                <label for="fanLabel" class="upimg">+</label>
+                <input type="file" class="form-control" id="fanLabel" name="blFile" multiple style="display: none">
+                <div  id="imgfanLabel">
+                </div>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label"><em class="gg-star">*</em><span style="" id="hidchurpoint">出入口及死角、灯标准标注图:</span></label>
+            <div class="col-sm-9 uploadimg" style="display: flex;flex-wrap:nowrap;">
+
+                <label for="gateDeadEndLabe" class="upimg">+</label>
+                <input type="file" class="form-control" id="gateDeadEndLabe" name="blFile" multiple style="display: none">
+                <div  id="imggateDeadEndLabe">
+                </div>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label"><em class="gg-star">*</em><span style="" id="hidfontpoint">冷库货架布点、监测系统探头及环境温度布点标注图:</span></label>
+            <div class="col-sm-9 uploadimg" style="display: flex;flex-wrap:nowrap;">
+
+                <label for="spmsdepLabel" class="upimg">+</label>
+                <input type="file" class="form-control" id="spmsdepLabel" name="blFile" multiple style="display:none">
+                <div id="imgspmsdepLabel">
+                </div>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label"><em class="gg-star"></em>探头位置标注三维图:</label>
+            <div class="col-sm-9 uploadimg" style="display: flex;flex-wrap:nowrap;">
+
+                <label for="monitorDetectorLabel" class="upimg">+</label>
+                <input type="file" class="form-control" id="monitorDetectorLabel" name="blFile" multiple style="display:none">
+                <div  id="imgmonitorDetectorLabel">
+                </div>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label"><em class="gg-star"></em>冷库安装位置库区平面图:</label>
+            <div class="col-sm-9 uploadimg" style="display: flex;flex-wrap:nowrap;">
+
+                <label for="planLayoutLabel" class="upimg">+</label>
+                <input type="file" class="form-control" id="planLayoutLabel" name="blFile" multiple style="display:none">
+                <div id="imgplanLayoutLabel">
+                </div>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label"><em class="gg-star"></em>冷库内部平面布局图:</label>
+            <div class="col-sm-9 uploadimg" style="display: flex;flex-wrap:nowrap;">
+
+                <label for="internalPlanLayoutLabel" class="upimg">+</label>
+                <input type="file" class="form-control" id="internalPlanLayoutLabel" name="blFile" multiple style="display:none">
+                <div id="imginternalPlanLayoutLabel">
+                </div>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label"><em class="gg-star"></em>冷库内部温度分布示意图（俯视）:</label>
+            <div class="col-sm-9 uploadimg" style="display: flex;flex-wrap:nowrap;">
+
+                <label for="overlookedSuggestDiagramLabel" class="upimg">+</label>
+                <input type="file" class="form-control" id="overlookedSuggestDiagramLabel" name="blFile" multiple style="display:none">
+                <div  id="imgoverlookedSuggestDiagramLabel">
+                </div>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label"><em class="gg-star"></em>冷库内部温度分布示意图（侧视）:</label>
+            <div class="col-sm-9 uploadimg" style="display: flex;flex-wrap:nowrap;">
+
+                <label for="sideViewSuggestDiagramLabel" class="upimg">+</label>
+                <input type="file" class="form-control" id="sideViewSuggestDiagramLabel" name="blFile" multiple style="display:none">
+                <div  id="imgsideViewSuggestDiagramLabel">
+                </div>
+            </div>
+
+        </div>
     <div class="gg-btnGroup">
         <button type="button" class="btn btn-sm btn-primary" ng-click="save()">完成</button>
     </div>

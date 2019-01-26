@@ -1,7 +1,5 @@
 package com.smartcold.manage.cold.entity.para;
 
-import java.sql.Timestamp;
-
 /**
  * Copyright (C), 2015-2019,
  * FileName: ParaDo
@@ -15,7 +13,7 @@ public class ParaDo {
     private Integer pmid;
     private Integer lyid;
     private String mapping;
-    private Timestamp addtime;
+    private String layMapping;
 
 
     public Integer getId() {
@@ -50,14 +48,13 @@ public class ParaDo {
         this.mapping = mapping;
     }
 
-    public Timestamp getAddtime() {
-        return addtime;
+    public String getLayMapping() {
+        return layMapping;
     }
 
-    public void setAddtime(Timestamp addtime) {
-        this.addtime = addtime;
+    public void setLayMapping(String layMapping) {
+        this.layMapping = layMapping;
     }
-
 
     @Override
     public String toString() {
@@ -66,7 +63,6 @@ public class ParaDo {
                 ", pmid=" + pmid +
                 ", lyid=" + lyid +
                 ", mapping='" + mapping + '\'' +
-                ", addtime=" + addtime +
                 '}';
     }
 }

@@ -17,5 +17,5 @@ public interface ParameterService {
 
     boolean update(ParaDo paraDo);
 
-    boolean delete(Integer id);
+    boolean delete(Integer proId);
 }

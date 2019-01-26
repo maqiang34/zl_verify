@@ -1,14 +1,15 @@
 package com.smartcold.manage.cold.service.impl.para;
 
 import com.smartcold.manage.cold.dao.para.LayoutDao;
-import com.smartcold.manage.cold.dao.para.ParameterDao;
-import com.smartcold.manage.cold.entity.para.ParaDo;
-import com.smartcold.manage.cold.service.para.ParameterService;
+import com.smartcold.manage.cold.entity.para.LayDo;
+import com.smartcold.manage.cold.service.para.LayoutService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * Copyright (C), 2015-2019,
@@ -20,49 +21,52 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Transactional(rollbackFor = Exception.class)
 @Service
-public class ParameterServiceImpl implements ParameterService {
+public class LayoutServiceImpl implements LayoutService {
     /**
      * log
      */
-    private Logger log = LoggerFactory.getLogger(ParameterServiceImpl.class);
+    private Logger log = LoggerFactory.getLogger(LayoutServiceImpl.class);
 
-    @Autowired
-    private ParameterDao parameterDao;
     @Autowired
     private LayoutDao layoutDao;
 
 
     @Override
-    public ParaDo getbypara(Integer proId) {
-        return parameterDao.getbyproId(proId);
+    public LayDo getbypara(Integer proId) {
+        return layoutDao.getbyproId(proId);
     }
 
     @Override
-    public ParaDo get(Integer id) {
-        return parameterDao.get(id);
+    public List<LayDo> getbyspareproId(Integer proId) {
+        return layoutDao.getbyspareproId(proId);
     }
 
     @Override
-    public boolean save(ParaDo paraDo) {
-        if (parameterDao.save(paraDo) > 0) {
+    public LayDo get(Integer id) {
+        return layoutDao.get(id);
+    }
+
+    @Override
+    public boolean save(LayDo layDo) {
+        if (layoutDao.save(layDo) > 0) {
             return true;
         }
         return false;
     }
 
     @Override
-    public boolean saveform(ParaDo paraDo, Integer proId) {
+    public boolean saveform(LayDo layDo, Integer proId) {
         return false;
     }
 
     @Override
-    public ParaDo loadfile(ParaDo paraDo, Integer proId) {
+    public LayDo loadfile(LayDo layDo, Integer proId) {
         return null;
     }
 
     @Override
-    public boolean update(ParaDo paraDo) {
-        if (parameterDao.update(paraDo) > 0) {
+    public boolean update(LayDo paraDo) {
+        if (layoutDao.update(paraDo) > 0) {
             return true;
         }
         return false;
@@ -70,11 +74,11 @@ public class ParameterServiceImpl implements ParameterService {
 
     @Override
     public boolean delete(Integer proId) {
-        if (parameterDao.remove(proId) > 0) {
-            if (layoutDao.removebyProId(proId) > 0) {
-                return true;
-            }
+        if (layoutDao.remove(proId) > 0) {
+            return true;
         }
         return false;
     }
+
+
 }

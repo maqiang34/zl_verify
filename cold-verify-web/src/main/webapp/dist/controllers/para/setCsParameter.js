@@ -1,30 +1,65 @@
 app.controller('setCsParameter', function ($scope, $http, $rootScope, $state, $stateParams, Upload) {
     $scope.index = 0;
-    var n = 10000;
-
+    $scope.layoutid = null;
     $scope.model = {};
-
-    $scope.save = function() {
-        var para = $scope.model;
-        var jsonpara = angular.toJson(para);
-        // var proid= $stateParams.powerid;
-        console.log("请求参数为：" + para);
-        var data ={
-            "mapping" : jsonpara,
-            "pmid" : 1
-        };
-        // data.mapping = para;
-        // data.pmid = 1;
-        console.log("提交的参数：" + data);
-        $http.post('/i/para/setPara', data).success(function (data) {
+    $scope.cslayout = {};
+    $scope.lisLay = {};
+    $scope.getdata = function() {
+        var para = {
+            "pmid" : $stateParams.powerid,
+        }
+        $http.post('/i/para/getPara', para).success(function (data) {
             if (data.code == 200) {
-                console.log("修改成功了");
+                if (data.paramod != null && data.paramod != undefined) {
+                    $scope.model = angular.fromJson(data.paramod);
+                    $scope.cslayout = angular.fromJson(data.layouts);
+                    $scope.lisLay = data.lisLay;
+                }
             }else{
                 alert(data.msg);
             }
         });
     }
 
+    $scope.getdata();
+
+    $scope.save = function() {
+        var para = $scope.model;
+        var layoud = $scope.cslayout;
+        var jsonpara = angular.toJson(para);
+        var jsonlayout = angular.toJson(layoud);
+        var proid= $stateParams.powerid;
+        console.log("proid：" + proid);
+        var data ={
+            "mapping" : jsonpara,
+            "pmid" : proid,
+            "layMapping" : jsonlayout
+        };
+        $http.post('/i/para/setPara', data).success(function (data) {
+            if (data.code == 200) {
+                console.log("操作成功");
+            }else{
+                alert(data.msg);
+            }
+        });
+    }
+
+
+    $scope.changelayout = function (x) {
+        var layoutId = x.value;
+        console.log("layouid：" + layoutId);
+        var paradata = {
+            "layId" : layoutId
+        }
+        $http.post('/i/para/getlayout', paradata).success(function (data) {
+            if (data.code == 200) {
+                $scope.cslayout = data.laymod;
+            }else{
+                alert(data.msg);
+            }
+        });
+
+    }
 
     $scope.download = function () {
         var expfrom = $("<form>").attr('style', 'display:none').attr('method', 'post').attr('action', window.location.origin + '/i/verifyData/checkData').attr('id', "expdataform");
